@@ -6,13 +6,10 @@ func main() {
   fmt.Println(lcm(18,14))
 }
 
-func gcd(a, b int) int {
+func lcm(a, b int) int {
+  c := a*b
   for b != 0 {
     a, b = b, a%b
   }
-  return a
-}
-
-func lcm(a, b int) int {
-  return a*(b/gcd(a,b))
+  return c/a
 }
