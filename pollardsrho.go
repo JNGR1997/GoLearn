@@ -10,7 +10,7 @@ func gcd(a, b int) int {
   for b!= 0 {
     a, b = b, a%b
   }
-  return b
+  return a
 }
 
 func rho(n int) int {
