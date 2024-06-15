@@ -20,6 +20,7 @@ func rho(n int) int {
   for d == 1 {
     x = (x*x + 1) %n
     y = (y*y*y*y + 2*y*y + 2) %n
+    fmt.Println(x,y,d)
     if x-y > 0 {
       d = gcd(n, x-y)
     } else {
