@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-  fmt.Println(isSmooth(33))
+  fmt.Println(isSmooth(34))
 }
 
 func isSmooth(n int) bool {
