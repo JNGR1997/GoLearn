@@ -31,19 +31,18 @@ func smooth(n int) (int, [6]int) {
 	return n, a
 }
 
-
 func boolSmooth(n int) (int, [6]int) {
-  primes := [6]int{2, 3, 5, 7, 11, 13}
-  var a [6]int
-  for b, s := range primes {
-    for n%s == 0 {
-      n = n / s
-      if a[b] == 0 {
-        a[b] = 1
-      } else {
-        a[b] = 0
-      }
-    }
-  }
-  return n, a
+	primes := [6]int{2, 3, 5, 7, 11, 13}
+	var a [6]int
+	for b, s := range primes {
+		for n%s == 0 {
+			n = n / s
+			if a[b] == 0 {
+				a[b] = 1
+			} else {
+				a[b] = 0
+			}
+		}
+	}
+	return n, a
 }
