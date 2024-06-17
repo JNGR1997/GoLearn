@@ -18,3 +18,15 @@ func isSmooth(n int) bool {
   }
   return false
 }
+
+func smooth(n int) int, [6]int {
+  primes := [6]int{2,3,5,7,11,13}
+  var a [6]int
+  for _, s := range primes {
+    for n%s == 0{
+      n = n/s
+      a[s] = a[s] + 1
+    }
+  }
+  return n, a
+}
