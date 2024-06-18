@@ -46,3 +46,12 @@ func boolSmooth(n int) (int, [6]int) {
 	}
 	return n, a
 }
+
+func sieve(a, b int) {
+  for i := a, i<b, i++ {
+    c, d = boolSmooth(i)
+    if c == 1 {
+      fmt.Println(d)
+    }
+  }
+}
