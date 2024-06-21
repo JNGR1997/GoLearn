@@ -34,3 +34,11 @@ func sieve(a, b int) {
   i++
  }
 }
+
+func boolAdd(a int, b []int, c int, d [int], n int) (int, []int) {
+ e := []int
+ for f, _ := range b {
+  e[f] = a[f] + b[f] %2
+ }
+ return a*c %n, e
+}
