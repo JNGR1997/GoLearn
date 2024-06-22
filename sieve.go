@@ -25,10 +25,12 @@ func boolSmooth(n int) (int, [6]int) {
 func sieve(a, b int) {
  e := 0
  i := a
+ var f [7][6]int
  for e<7 {
   c, d := boolSmooth(i*i %b)
   if c == 1 {
    fmt.Println(i, d)
+   f[e]=d
    e++
   }
   i++
