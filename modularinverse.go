@@ -14,7 +14,7 @@ func modInverse(a,n int) (bool, int) {
   return false, 0
 }
 
-func euclideanInverse(a, m int) {
+func euclideanInverse(a, m int) (bool, int) {
   n := m
   b := a
   q := (n - n%b)/b
@@ -32,8 +32,12 @@ func euclideanInverse(a, m int) {
     t3 = t1 - q*t2
     fmt.Println(n,b,q,r,t1,t2,t3)
   }
-  for t2 < 0 {
-    t2 = t2 + m
+  if b != 1 {
+    return false, 0
+  } else {
+    for t2 < 0 {
+      t2 = t2 + m
+    }
+    return true, t2 % m
   }
-  return t2 % m
 }
