@@ -32,4 +32,8 @@ func euclideanInverse(a, m int) {
     t3 = t1 - q*t2
     fmt.Println(n,b,q,r,t1,t2,t3)
   }
+  for t2 < 0 {
+    t2 = t2 + m
+  }
+  return t2 % m
 }
