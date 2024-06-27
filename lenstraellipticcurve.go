@@ -8,21 +8,21 @@ func main() {
 
 func doublepoint(x, y, n int) (int, int) {
 	num := 3*x*x + 5
- denom := 2*y
- comfact := gcd(num, denom)
- if gcd(num,denom) != 1 {
-  num = num/comfact
-  denom = denom/comfact
- }
- s := num %n
- if denom != 1 {
-	  a, b := euclideanInverse(denom, n)
-	  if a == true {
-		  s = s*b %n
-  	} else {
-		  fmt.Println(2 * y % n)
-	  }
- }
+	denom := 2 * y
+	comfact := gcd(num, denom)
+	if gcd(num, denom) != 1 {
+		num = num / comfact
+		denom = denom / comfact
+	}
+	s := num % n
+	if denom != 1 {
+		a, b := euclideanInverse(denom, n)
+		if a == true {
+			s = s * b % n
+		} else {
+			fmt.Println(2 * y % n)
+		}
+	}
 	newx := s*s - 2*x
 	newy := s*(x-newx) - y
 	return newx, newy
@@ -56,8 +56,8 @@ func euclideanInverse(a, m int) (bool, int) {
 }
 
 func gcd(a, b int) int {
-  for b != 0 {
-    a, b = b, a%b
-  }
-  return a
+	for b != 0 {
+		a, b = b, a%b
+	}
+	return a
 }
