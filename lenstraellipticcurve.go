@@ -28,6 +28,9 @@ func doublepoint(x, y, n int) (int, int) {
 	return newx, newy
 }
 
+func addpoints(a,b,c,d,n int) (int,int) {
+}
+
 func euclideanInverse(a, m int) (bool, int) {
 	n := m
 	b := a
