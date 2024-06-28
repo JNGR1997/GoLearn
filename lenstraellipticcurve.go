@@ -28,18 +28,11 @@ func doublepoint(x, y, n int) (int, int) {
 	return newx, newy
 }
 
-func addpoints(a,b,c,d,n int) (int,int) {
+func addpoints(a,b,c,d,n int) (int, int) {
   if a == c {
   } else {
-    num := d - b
-    denom := c - a
-    if denom != 1 {
-      e, f := euclideanInverse(denom,n)
-      if e == true {
-        
-      } else {
-      }
-    }
+    num := d-b
+    denom := c-a
   }
 }
 
