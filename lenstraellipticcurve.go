@@ -30,9 +30,13 @@ func doublepoint(x, y, n int) (int, int) {
 
 func addpoints(a,b,c,d,n int) (int, int) {
   if a == c {
+    if b==d {
+      x, y := doublepoint(a,b,n)
+      return x, y
+    }
   } else {
-    num := d-b
-    denom := c-a
+    num := (d-b)*(d-b) - (a+c)*(c-a)*(c-a)
+    denom := (c-a)*(c-a)
   }
 }
 
