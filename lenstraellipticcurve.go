@@ -35,9 +35,18 @@ func addpoints(a,b,c,d,n int) (int, int) {
       return x, y
     }
   } else {
-    num := (d-b)*(d-b) - (a+c)*(c-a)*(c-a)
-    denom := (c-a)*(c-a)
+    num := move(d-b,n)
+    denom := move(c-a,n)
+    s := num*euclideanInverse(denom,n)%n
   }
+  return move(s*s - a -c,n), move(b - s*(a-move(s*s - a-c)),n)
+}
+
+func move(x,n int) int {
+  for x < 0 {
+    x = x+n
+  }
+  return x%n
 }
 
 func euclideanInverse(a, m int) (bool, int) {
