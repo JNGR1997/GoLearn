@@ -45,7 +45,7 @@ func addpoints(a,b,c,d,n int) (int, int) {
       s := num*f%n
     }
   }
-  return move(s*s - a -c,n), move(b - s*(a-move(s*s - a-c)),n)
+  return move(s*s - a -c,n), move(b - s*(a-move(s*s - a-c,n)),n)
 }
 
 func move(x,n int) int {
