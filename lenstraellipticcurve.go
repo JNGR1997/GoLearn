@@ -37,7 +37,13 @@ func addpoints(a,b,c,d,n int) (int, int) {
   } else {
     num := move(d-b,n)
     denom := move(c-a,n)
-    s := num*euclideanInverse(denom,n)%n
+    e, f := euclideanInverse(denom,n)
+    if e != true {
+      fmt.Println(denom)
+      return 0,0
+    } else {
+      s := num*f%n
+    }
   }
   return move(s*s - a -c,n), move(b - s*(a-move(s*s - a-c)),n)
 }
