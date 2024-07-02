@@ -29,9 +29,15 @@ func doublepoint(x, y, n int) (int, int) {
 }
 
 func towerpoint(x,y,n,m) (int, int) {
-  for m%2 == 0 {
-    x, y = doublepoint(x,y,n)
-    m=m/2
+  for m>1 {
+    if m%2 == 1 {
+      w,z := towerpoint(x,y,n,m-1)
+      x, y = addpoints(x,y,w,z,n)
+      m=m-1
+    else {
+      x, y = doublepoint(x,y,n)
+      m=m/2
+    }
   }
   return x, y
 }
