@@ -28,6 +28,14 @@ func doublepoint(x, y, n int) (int, int) {
 	return newx, newy
 }
 
+func towerpoint(x,y,n,m) (int, int) {
+  for m%2 == 0 {
+    x, y = doublepoint(x,y,n)
+    m=m/2
+  }
+  return x, y
+}
+
 func addpoints(a,b,c,d,n int) (int, int) {
   if a == c {
     if b==d {
