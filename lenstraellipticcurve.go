@@ -34,7 +34,7 @@ func towerpoint(x,y,n,m) (int, int) {
       w,z := towerpoint(x,y,n,m-1)
       x, y = addpoints(x,y,w,z,n)
       m=m-1
-    else {
+    } else {
       x, y = doublepoint(x,y,n)
       m=m/2
     }
