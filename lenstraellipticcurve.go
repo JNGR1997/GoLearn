@@ -23,10 +23,9 @@ func doublepoint(x, y, n int) (int, int) {
 			fmt.Println(2 * y % n)
 		}
 	}
-	newx := s*s - 2*x
-	newy := s*(x-newx) - y
- fmt.Println(newx,newy,(newy*newy%n)==(3*newx*newx*newx +5*newx -5)%n)
-	return move(newx,n), move(newy,n)
+	newx := move(s*s - 2*x,n)
+	newy := move(s*(x-newx) - y,n)
+	return newx, newy
 }
 
 func towerpoint(x, y, n, m int) (int, int) {
