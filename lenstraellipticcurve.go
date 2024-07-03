@@ -25,6 +25,7 @@ func doublepoint(x, y, n int) (int, int) {
 	}
 	newx := s*s - 2*x
 	newy := s*(x-newx) - y
+ fmt.Println(newx,newy,(newy*newy%n)==(3*newx*newx*newx +5*newx -5)%n)
 	return move(newx,n), move(newy,n)
 }
 
