@@ -21,7 +21,7 @@ func doublepoint(x, y, n int) (int, int) {
 			s = s * b % n
 		} else {
 			fmt.Println(2 * y % n)
-  return 0,0
+   return 0,0
 		}
 	}
 	newx := move(s*s - 2*x,n)
