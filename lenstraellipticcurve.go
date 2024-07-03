@@ -8,7 +8,7 @@ func main() {
 
 func doublepoint(x, y, n int) (int, int) {
 	num := 3*x*x + 5
-	denom := 2 * y
+	denom := 2*y
 	comfact := gcd(num, denom)
 	if comfact != 1 {
 		num = num / comfact
@@ -25,7 +25,7 @@ func doublepoint(x, y, n int) (int, int) {
 	}
 	newx := s*s - 2*x
 	newy := s*(x-newx) - y
-	return newx, newy
+	return move(newx,n), move(newy,n)
 }
 
 func towerpoint(x, y, n, m int) (int, int) {
