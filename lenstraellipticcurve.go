@@ -10,7 +10,7 @@ func doublepoint(x, y, n int) (int, int) {
 	num := 3*x*x + 5
 	denom := 2 * y
 	comfact := gcd(num, denom)
-	if gcd(num, denom) != 1 {
+	if comfact != 1 {
 		num = num / comfact
 		denom = denom / comfact
 	}
