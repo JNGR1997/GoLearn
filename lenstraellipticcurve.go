@@ -28,45 +28,46 @@ func doublepoint(x, y, n int) (int, int) {
 	return newx, newy
 }
 
-func towerpoint(x,y,n,m) (int, int) {
-  for m>1 {
-    if m%2 == 1 {
-      w,z := towerpoint(x,y,n,m-1)
-      x, y = addpoints(x,y,w,z,n)
-      m=m-1
-    } else {
-      x, y = doublepoint(x,y,n)
-      m=m/2
-    }
-  }
-  return x, y
+func towerpoint(x, y, n, m int) (int, int) {
+	for m > 1 {
+		if m%2 == 1 {
+			w, z := towerpoint(x, y, n, m-1)
+			x, y = addpoints(x, y, w, z, n)
+			m = m - 1
+		} else {
+			x, y = doublepoint(x, y, n)
+			m = m / 2
+		}
+	}
+	return x, y
 }
 
-func addpoints(a,b,c,d,n int) (int, int) {
-  if a == c {
-    if b==d {
-      x, y := doublepoint(a,b,n)
-      return x, y
-    }
-  } else {
-    num := move(d-b,n)
-    denom := move(c-a,n)
-    e, f := euclideanInverse(denom,n)
-    if e != true {
-      fmt.Println(denom)
-      return 0,0
-    } else {
-      s := num*f%n
-    }
-  }
-  return move(s*s - a -c,n), move(b - s*(a-move(s*s - a-c,n)),n)
+func addpoints(a, b, c, d, n int) (int, int) {
+	if a == c {
+		if b == d {
+			x, y := doublepoint(a, b, n)
+			return x, y
+		}
+	} else {
+		num := move(d-b, n)
+		denom := move(c-a, n)
+		e, f := euclideanInverse(denom, n)
+		if e != true {
+			fmt.Println(denom)
+			return 0, 0
+		} else {
+			s := num * f % n
+			return move(s*s-a-c, n), move(b-s*(a-move(s*s-a-c, n)), n)
+		}
+	}
+	return 0, 0
 }
 
-func move(x,n int) int {
-  for x < 0 {
-    x = x+n
-  }
-  return x%n
+func move(x, n int) int {
+	for x < 0 {
+		x = x + n
+	}
+	return x % n
 }
 
 func euclideanInverse(a, m int) (bool, int) {
