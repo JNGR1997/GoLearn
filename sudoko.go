@@ -15,3 +15,12 @@ func numOptions(a [9]bool) int {
   }
   return b
 }
+
+func compareOptions(a, b [9]bool) bool {
+  for k =: 0; k<9; k++ {
+    if a[k] != b[k] {
+      return false
+    }
+  }
+  return true
+}
