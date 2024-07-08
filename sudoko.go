@@ -17,10 +17,15 @@ func numOptions(a [9]bool) int {
 }
 
 func compareOptions(a, b [9]bool) bool {
-  for k =: 0; k<9; k++ {
+  for k := 0; k<9; k++ {
     if a[k] != b[k] {
       return false
     }
   }
   return true
+}
+
+func removeOption(a int, b [9]bool) [9]bool {
+  b[a-1]=false
+  return b
 }
