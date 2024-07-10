@@ -4,6 +4,7 @@ func main() {
 }
 
 func checkCells(a,b,c,d,e,f,g,h,i [9]bool) ([9]bool, [9]bool, [9]bool, [9]bool, [9]bool, [9]bool, [9]bool, [9]bool, [9]bool) {
+  j := [9][9]bool{a,b,c,d,e,f,g,h,i}
 }
 
 func numOptions(a [9]bool) int {
