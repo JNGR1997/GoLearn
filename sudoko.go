@@ -5,6 +5,12 @@ func main() {
 
 func checkCells(a,b,c,d,e,f,g,h,i [9]bool) ([9]bool, [9]bool, [9]bool, [9]bool, [9]bool, [9]bool, [9]bool, [9]bool, [9]bool) {
   j := [9][9]bool{a,b,c,d,e,f,g,h,i}
+  for {
+    for k,l := range j {
+      if numOptions(l)==1 {
+      }
+    }
+  }
 }
 
 func numOptions(a [9]bool) int {
