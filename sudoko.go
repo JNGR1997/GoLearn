@@ -8,6 +8,11 @@ func checkCells(a,b,c,d,e,f,g,h,i [9]bool) ([9]bool, [9]bool, [9]bool, [9]bool, 
   for {
     for k,l := range j {
       if numOptions(l)==1 {
+        for m,n := range j {
+          if m != k {
+            j[m] = removeOption(k,j[m])
+          }
+        }
       }
     }
   }
