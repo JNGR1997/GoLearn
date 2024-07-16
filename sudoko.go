@@ -3,10 +3,9 @@ package main
 func main() {
 }
 
-func checkCells(a,b,c,d,e,f,g,h,i [9]bool) ([9]bool, [9]bool, [9]bool, [9]bool, [9]bool, [9]bool, [9]bool, [9]bool, [9]bool) {
-  j := [9][9]bool{a,b,c,d,e,f,g,h,i}
+func checkCells(a [9][9]bool) [9][9]bool {
   for {
-    for k,l := range j {
+    for k,l := range a {
       if numOptions(l)==1 {
         for m,n := range j {
           if m != k {
