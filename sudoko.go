@@ -15,6 +15,7 @@ func checkCells(a [9][9]bool) [9][9]bool {
       }
     }
   }
+  return a
 }
 
 func numOptions(a [9]bool) int {
