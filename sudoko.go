@@ -7,9 +7,9 @@ func checkCells(a [9][9]bool) [9][9]bool {
   for {
     for k,l := range a {
       if numOptions(l)==1 {
-        for m,n := range j {
+        for m,n := range a {
           if m != k {
-            j[m] = removeOption(k,j[m])
+            a[m] = removeOption(k,a[m])
           }
         }
       }
@@ -40,4 +40,16 @@ func compareOptions(a, b [9]bool) bool {
 func removeOption(a int, b [9]bool) [9]bool {
   b[a-1]=false
   return b
+}
+
+func oneOption(a [9][9]bool) [9][9]bool {
+  b := [9]int
+  for c,d := range a {
+    for e,f := range d {
+      if f == true {
+        b[e-1] = b[e-1]+1
+      }
+    }
+  }
+  return a
 }
