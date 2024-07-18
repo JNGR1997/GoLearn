@@ -44,21 +44,15 @@ func removeOption(a int, b [9]bool) [9]bool {
 
 func oneOption(a [9][9]bool) [9][9]bool {
   b := [9]int
-  for c,d := range a {
-    for e,f := range d {
-      if f == true {
-        b[e-1] = b[e-1]+1
+  c := 0
+  for d,_ := range b {
+    for f,g := range a {
+      if g[d]==true {
+        b[d] = b[d]+1
+        c = f
       }
     }
-  }
-  for g,h := range b {
-    if h==1 {
-      for i,j := range a {
-        if j[g]==true {
-          a[i] = {false, false, false, false, false, false, false,  false, false}
-          a[i][g]=true
-        }
-      }
+    if b[d]==1 {
     }
   }
   return a
