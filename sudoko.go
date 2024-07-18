@@ -51,5 +51,15 @@ func oneOption(a [9][9]bool) [9][9]bool {
       }
     }
   }
+  for g,h := range b {
+    if h==1 {
+      for i,j := range a {
+        if j[g]==true {
+          a[i] = {false, false, false, false, false, false, false,  false, false}
+          a[i][g]=true
+        }
+      }
+    }
+  }
   return a
 }
