@@ -53,6 +53,11 @@ func oneOption(a [9][9]bool) [9][9]bool {
       }
     }
     if b[d]==1 {
+      for h,i := range a {
+        if h != c {
+          i[d]=false
+        }
+      }
     }
   }
   return a
