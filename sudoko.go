@@ -89,7 +89,7 @@ func sudUnion(a,b [9]bool) [9]bool {
     if a[d]==true {
       c[d]=true
     } elseif b[d]==true {
-      c[d]=trur
+      c[d]=true
     } else {
       c[d]=false
     }
