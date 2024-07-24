@@ -82,3 +82,17 @@ func twoOptions(a [9][9]bool) [9][9]bool {
   }
   return a
 }
+
+func sudUnion(a,b [9]bool) [9]bool {
+  c := [9]bool
+  for d,_ := range c {
+    if a[d]==true {
+      c[d]=true
+    } elseif b[d]==true {
+      c[d]=trur
+    } else {
+      c[d]=false
+    }
+  }
+  return c
+}
