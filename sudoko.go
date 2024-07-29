@@ -65,17 +65,9 @@ func oneOption(a [9][9]bool) [9][9]bool {
 
 func twoOptions(a [9][9]bool) [9][9]bool {
   for b,c := range a {
-    if numOptions(c)==2 {
-      for d,e := range a {
-        if b != d {
-          if compareOptions(c,e)==true {
-            for f,g := range a {
-              if f != d {
-                if f != b {
-                }
-              }
-            }
-          }
+    for d,e := range a {
+      if b != d {
+        if numOptions(sudUnion(c,e))==2 {
         }
       }
     }
