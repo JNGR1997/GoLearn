@@ -73,8 +73,8 @@ func twoOptions(a [9][9]bool) [9][9]bool {
               if f != d {
                 for h,i := range sudUnion(c,e) {
                   if i==true {
-             
-                  } 
+                    a[f]=removeOption(i,a[f])
+                  }
                 }
               }
             }
