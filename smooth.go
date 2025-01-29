@@ -37,11 +37,7 @@ func boolSmooth(n int) (int, [6]int) {
 	for b, s := range primes {
 		for n%s == 0 {
 			n = n / s
-			if a[b] == 0 {
-				a[b] = 1
-			} else {
-				a[b] = 0
-			}
+			a[b] = (a[b]+1)%2
 		}
 	}
 	return n, a
