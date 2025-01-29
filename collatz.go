@@ -18,11 +18,9 @@ func col(a,b int) bool {
   for c >= a {
     if c%2 == 0 {
       if d%2 == 0 {
-        c = c/2
-        d = d/2
+        c, d = c/2, d/2
       } else {
-        c = 3*c
-        d = 3*d + 1
+        c, d = 3*c, 3*d + 1
       }
     } else {
       return true
