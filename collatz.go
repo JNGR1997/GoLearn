@@ -21,6 +21,8 @@ func col(a,b int) bool {
         c = c/2
         d = d/2
       } else {
+        c = 3*c
+        d = 3*d + 1
       }
     } else {
       return true
