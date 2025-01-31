@@ -32,3 +32,6 @@ func sieve(a, b int) ([7]int, [7][6]int) {
 	}
 	return g, f
 }
+
+func linalg(a [7]int, b [7][6]int) {
+}
