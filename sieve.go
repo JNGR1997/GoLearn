@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func main() {
 	linalg(sieve(18, 323))
 }
@@ -37,8 +39,9 @@ func linalg(a []int, b [][]int) {
 	c := a
 	d := b
 	for !checkBlock(c, d) {
-
+		d = removeEmptyColumns(d)
 	}
+	fmt.Println(c, d)
 }
 
 func checkBlock(a []int, b [][]int) bool {
@@ -60,4 +63,25 @@ func checkNtuple(a []int) bool {
 }
 
 func removeEmptyColumns(a [][]int) [][]int {
+	b := a
+	j := 0
+	maxj := len(a[0])
+	for j < maxj {
+		allnil := true
+		for _, d := range b {
+			if d[j] != 0 {
+				allnil = false
+				break
+			}
+		}
+		if allnil == true {
+			for _, e := range b {
+				e = append(e[:j], e[(j+1):]...)
+				maxj = maxj - 1
+			}
+		} else {
+			j++
+		}
+	}
+	return b
 }
