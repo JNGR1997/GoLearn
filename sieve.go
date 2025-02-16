@@ -1,7 +1,7 @@
 package main
 
 func main() {
-	sieve(18, 323)
+	checkNtuple(sieve(18, 323))
 }
 
 func boolSmooth(n int) (int, [6]int) {
@@ -34,4 +34,20 @@ func sieve(a, b int) ([7]int, [7][6]int) {
 }
 
 func linalg(a [7]int, b [7][6]int) {
+	for !checkNtuple(a, b) {
+	  
+	}
+}
+
+func checkNtuple(a [7]int, b [7][6]int) bool {
+	for _, c := range b {
+		d := 0
+		for _, e := range c {
+			d = e + d
+		}
+		if d == 0 {
+			return true
+		}
+	}
+	return false
 }
