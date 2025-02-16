@@ -34,18 +34,8 @@ func sieve(a, b int) ([]int, [][]int) {
 }
 
 func linalg(a []int, b [][]int) {
-	c := []int{}
-	var d [][]int
-	for _, v := range a {
-		c = append(c, v)
-	}
-	for _, v := range b {
-		j := []int{}
-		for _, k := range v {
-			j = append(j, k)
-		}
-		d = append(d, j)
-	}
+	c := a
+	d := b
 	for !checkBlock(c, d) {
 
 	}
