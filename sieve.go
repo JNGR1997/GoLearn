@@ -46,20 +46,25 @@ func linalg(a []int, b [][]int) {
 		}
 		d = append(d, j)
 	}
-	for !checkNtuple(c, d) {
+	for !checkBlock(c, d) {
 
 	}
 }
 
-func checkNtuple(a []int, b [][]int) bool {
+func checkBlock(a []int, b [][]int) bool {
 	for _, c := range b {
-		d := 0
-		for _, e := range c {
-			d = e + d
-		}
-		if d == 0 {
+		if checkNtuple(c) {
 			return true
 		}
 	}
 	return false
+}
+
+func checkNtuple(a []int) bool {
+	for _, b := range a {
+		if b != 0 {
+			return false
+		}
+	}
+	return true
 }
