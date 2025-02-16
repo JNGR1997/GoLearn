@@ -58,3 +58,6 @@ func checkNtuple(a []int) bool {
 	}
 	return true
 }
+
+func removeEmptyColumns(a [][]int) [][]int {
+}
