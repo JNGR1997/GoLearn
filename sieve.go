@@ -77,8 +77,8 @@ func removeEmptyColumns(a [][]int) [][]int {
 		if allnil == true {
 			for _, e := range b {
 				e = append(e[:j], e[(j+1):]...)
-				maxj = maxj - 1
 			}
+			maxj = maxj - 1
 		} else {
 			j++
 		}
