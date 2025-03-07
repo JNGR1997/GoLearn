@@ -3,12 +3,12 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(doublepoint(1, 1, 455839))
+	fmt.Println(towerpoint(1, 1, 455839, 30030))
 }
 
 func doublepoint(x, y, n int) (int, int) {
 	num := 3*x*x + 5
-	denom := 2*y
+	denom := 2 * y
 	comfact := gcd(num, denom)
 	if comfact != 1 {
 		num = num / comfact
@@ -20,25 +20,23 @@ func doublepoint(x, y, n int) (int, int) {
 		if a == true {
 			s = s * b % n
 		} else {
-			fmt.Println(2 * y % n)
-   return 0,0
+			fmt.Println(denom, " does not have an inverse mod ", n, ".")
+			return 0, 0
 		}
 	}
-	newx := move(s*s - 2*x,n)
-	newy := move(s*(x-newx) - y,n)
+	newx := move(s*s-2*x, n)
+	newy := move(s*(x-newx)-y, n)
 	return newx, newy
 }
 
 func towerpoint(x, y, n, m int) (int, int) {
-	for m > 1 {
-		if m%2 == 1 {
-			w, z := towerpoint(x, y, n, m-1)
-			x, y = addpoints(x, y, w, z, n)
-			m = m - 1
-		} else {
-			x, y = doublepoint(x, y, n)
-			m = m / 2
-		}
+	for m%2 == 0 {
+		x, y = doublepoint(x, y, n)
+		m = m / 2
+	}
+	if m > 1 {
+		w, z := towerpoint(x, y, n, m-1)
+		return addpoints(x, y, w, z, n)
 	}
 	return x, y
 }
@@ -54,7 +52,7 @@ func addpoints(a, b, c, d, n int) (int, int) {
 		denom := move(c-a, n)
 		e, f := euclideanInverse(denom, n)
 		if e != true {
-			fmt.Println(denom)
+			fmt.Println(denom, " does not have an inverse mod ", n, ".")
 			return 0, 0
 		} else {
 			s := num * f % n
