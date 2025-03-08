@@ -58,6 +58,12 @@ func move(x, n int) int {
 	return x % n
 }
 
+func gcd(a, b int) int {
+	for b != 0 {
+		a, b = b, a%b
+	}
+	return a
+}
 func euclideanInverse(a, m int) (bool, int) {
 	n := m
 	b := a
@@ -77,17 +83,6 @@ func euclideanInverse(a, m int) (bool, int) {
 	}
 	if b != 1 {
 		return false, 0
-	} else {
-		for t2 < 0 {
-			t2 = t2 + m
-		}
-		return true, t2 % m
 	}
-}
-
-func gcd(a, b int) int {
-	for b != 0 {
-		a, b = b, a%b
-	}
-	return a
+	return true, move(t2, m)
 }
