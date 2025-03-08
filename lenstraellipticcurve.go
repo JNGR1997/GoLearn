@@ -3,22 +3,16 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(towerpoint(1, 1, 455839, 30030))
+	fmt.Println(towerpoint(1, 1, 455839, 30300))
 }
 
 func doublepoint(x, y, n int) (int, int) {
-	num := 3*x*x + 5
-	denom := 2 * y
-	comfact := gcd(num, denom)
-	if comfact != 1 {
-		num = num / comfact
-		denom = denom / comfact
-	}
-	s := num % n
+	s := (3*x*x + 5) % n
+	denom := (2 * y) % n
 	if denom != 1 {
 		a, b := euclideanInverse(denom, n)
-		if a == true {
-			s = s * b % n
+		if a {
+			s = (s * b) % n
 		} else {
 			fmt.Println(denom, " does not have an inverse mod ", n, ".")
 			return 0, 0
@@ -44,20 +38,17 @@ func towerpoint(x, y, n, m int) (int, int) {
 func addpoints(a, b, c, d, n int) (int, int) {
 	if a == c {
 		if b == d {
-			x, y := doublepoint(a, b, n)
-			return x, y
+			return doublepoint(a, b, n)
 		}
 	} else {
 		num := move(d-b, n)
 		denom := move(c-a, n)
 		e, f := euclideanInverse(denom, n)
-		if e != true {
-			fmt.Println(denom, " does not have an inverse mod ", n, ".")
-			return 0, 0
-		} else {
+		if e {
 			s := num * f % n
 			return move(s*s-a-c, n), move(b-s*(a-move(s*s-a-c, n)), n)
 		}
+		fmt.Println(denom, " does not have an inverse mod ", n, ".")
 	}
 	return 0, 0
 }
