@@ -36,7 +36,7 @@ func addpoints(e, f, g, h, n int) (int, int) {
 }
 
 func doublepoint(x, y, n int) (int, int) {
-	numx := (2 * x * y)
+	numx := (2 * x * y) % n
 	numy := move(y*y-6*x*x, n)
 	denomx := (6*x*x + y*y) % n
 	denomy := move(2-6*x*x-y*y, n)
