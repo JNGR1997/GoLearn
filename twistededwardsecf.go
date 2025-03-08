@@ -7,10 +7,6 @@ func main() {
 }
 
 func towerpoint(x, y, n, m int) (int, int) {
-	if m < 2 {
-		return x, y
-	}
-
 	for m%2 == 0 {
 		x, y = doublepoint(x, y, n)
 		m = m / 2
