@@ -63,8 +63,8 @@ func addpoints(a, b, c, d, n int) (int, int) {
 }
 
 func move(x, n int) int {
-	for x < 0 {
-		x = x + n
+	if x < 0 {
+		x = n - (-x)%n
 	}
 	return x % n
 }
