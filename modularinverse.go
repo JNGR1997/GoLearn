@@ -7,25 +7,25 @@ func move(x, n int) int {
 	return x % n
 }
 
-func euclideanInverse(a, m int) (bool, int) {
-	n := m
+func euclideanInverse(a, n int) (int, bool) {
+	m := n
 	b := a
-	q := (n - n%b) / b
-	r := n % b
+	q := (m - m%b) / b
+	r := m % b
 	t1 := 0
 	t2 := 1
 	t3 := t1 - q*t2
 	for r != 0 {
 		n = b
 		b = r
-		q = (n - n%b) / b
-		r = n % b
+		q = (m - m%b) / b
+		r = m % b
 		t1 = t2
 		t2 = t3
 		t3 = t1 - q*t2
 	}
 	if b != 1 {
-		return false, 0
+		return 0, false
 	}
-	return true, move(t2, m)
+	return move(t2, n), true
 }
