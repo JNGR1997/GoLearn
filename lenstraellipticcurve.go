@@ -7,11 +7,11 @@ func main() {
 }
 
 func doublepoint(x, y, n int) (int, int) {
-	s := (3*x*x + 5) % n
+	num := (3*x*x + 5) % n
 	denom := (2 * y) % n
 	a, b := euclideanInverse(denom, n)
 	if b {
-		s = (s * a) % n
+		s := (num * a) % n
 		newx := move(s*s-2*x, n)
 		newy := move(s*(x-newx)-y, n)
 		return newx, newy
@@ -41,7 +41,9 @@ func addpoints(a, b, c, d, n int) (int, int) {
 	e, f := euclideanInverse(denom, n)
 	if f {
 		s := (num * e) % n
-		return move(s*s-a-c, n), move(b-s*(a-move(s*s-a-c, n)), n)
+		newx := move(s*s-a-c, n)
+		newy := move(b-s*(a-newx), n)
+		return newx, newy
 	}
 	fmt.Println(denom, " does not have an inverse mod ", n, ".")
 	return 0, 0
