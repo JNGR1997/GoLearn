@@ -9,18 +9,15 @@ func main() {
 func doublepoint(x, y, n int) (int, int) {
 	s := (3*x*x + 5) % n
 	denom := (2 * y) % n
-	if denom != 1 {
-		a, b := euclideanInverse(denom, n)
-		if a {
-			s = (s * b) % n
-		} else {
-			fmt.Println(denom, " does not have an inverse mod ", n, ".")
-			return 0, 0
-		}
+	a, b := euclideanInverse(denom, n)
+	if a {
+		s = (s * b) % n
+		newx := move(s*s-2*x, n)
+		newy := move(s*(x-newx)-y, n)
+		return newx, newy
 	}
-	newx := move(s*s-2*x, n)
-	newy := move(s*(x-newx)-y, n)
-	return newx, newy
+	fmt.Println(denom, " does not have an inverse mod ", n, ".")
+	return 0, 0
 }
 
 func towerpoint(x, y, n, m int) (int, int) {
@@ -61,31 +58,24 @@ func move(x, n int) int {
 }
 
 func euclideanInverse(a, m int) (bool, int) {
-        n := m
-        b := a
-        q := (n - n%b) / b
-        r := n % b
-        t1 := 0
-        t2 := 1
-        t3 := t1 - q*t2
-        for r != 0 {
-                n = b
-                b = r
-                q = (n - n%b) / b
-                r = n % b
-                t1 = t2
-                t2 = t3
-                t3 = t1 - q*t2
-        }
-        if b != 1 {
-                return false, 0
-        }
-        return true, move(t2, m)
-}
-
-func gcd(a, b int) int {
-	for b != 0 {
-		a, b = b, a%b
+	n := m
+	b := a
+	q := (n - n%b) / b
+	r := n % b
+	t1 := 0
+	t2 := 1
+	t3 := t1 - q*t2
+	for r != 0 {
+		n = b
+		b = r
+		q = (n - n%b) / b
+		r = n % b
+		t1 = t2
+		t2 = t3
+		t3 = t1 - q*t2
 	}
-	return a
+	if b != 1 {
+		return false, 0
+	}
+	return true, move(t2, m)
 }
