@@ -10,8 +10,8 @@ func doublepoint(x, y, n int) (int, int) {
 	s := (3*x*x + 5) % n
 	denom := (2 * y) % n
 	a, b := euclideanInverse(denom, n)
-	if a {
-		s = (s * b) % n
+	if b {
+		s = (s * a) % n
 		newx := move(s*s-2*x, n)
 		newy := move(s*(x-newx)-y, n)
 		return newx, newy
@@ -33,20 +33,17 @@ func towerpoint(x, y, n, m int) (int, int) {
 }
 
 func addpoints(a, b, c, d, n int) (int, int) {
-	if a == c {
-		if b == d {
-			return doublepoint(a, b, n)
-		}
-	} else {
-		num := move(d-b, n)
-		denom := move(c-a, n)
-		e, f := euclideanInverse(denom, n)
-		if e {
-			s := num * f % n
-			return move(s*s-a-c, n), move(b-s*(a-move(s*s-a-c, n)), n)
-		}
-		fmt.Println(denom, " does not have an inverse mod ", n, ".")
+	if a == c && b == d {
+		return doublepoint(a, b, n)
 	}
+	num := move(d-b, n)
+	denom := move(c-a, n)
+	e, f := euclideanInverse(denom, n)
+	if f {
+		s := (num * e) % n
+		return move(s*s-a-c, n), move(b-s*(a-move(s*s-a-c, n)), n)
+	}
+	fmt.Println(denom, " does not have an inverse mod ", n, ".")
 	return 0, 0
 }
 
@@ -57,7 +54,7 @@ func move(x, n int) int {
 	return x % n
 }
 
-func euclideanInverse(a, m int) (bool, int) {
+func euclideanInverse(a, m int) (int, bool) {
 	n := m
 	b := a
 	q := (n - n%b) / b
@@ -75,7 +72,7 @@ func euclideanInverse(a, m int) (bool, int) {
 		t3 = t1 - q*t2
 	}
 	if b != 1 {
-		return false, 0
+		return 0, false
 	}
-	return true, move(t2, m)
+	return move(t2, m), true
 }
