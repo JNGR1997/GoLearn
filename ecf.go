@@ -69,7 +69,7 @@ func (fin finite) double() point {
 	if b {
 		s := (num * a) % n
 		newx := move(s*s - 2*fin.x)
-		newy := move(s*(fin.x-newx) - fin.y)
+		newy := move(fin.y - s*(fin.x-newx))
 		return finite{x: newx, y: newy}
 	}
 	fmt.Println(denom, " does not have an inverse mod ", n, ".")
@@ -104,8 +104,7 @@ func euclideanInverse(a int) (int, bool) {
 	}
 	q := (m - m%b) / b
 	r := m % b
-	t1 := 0
-	t2 := 1
+	t1, t2 := 0, 1
 	t3 := t1 - q*t2
 	for r != 0 {
 		m = b
