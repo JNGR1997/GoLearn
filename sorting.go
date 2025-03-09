@@ -1,13 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"math/rand/v2"
 )
-
-func main() {
-	fmt.Println(sort([]int{2, 1, 3, 7, 9}))
-}
 
 func sort(list []int) []int {
 	if len(list) > 1 {
