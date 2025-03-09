@@ -1,11 +1,5 @@
 package main 
 
-import "fmt"
-
-func main() {
-  fmt.Println(lcm(18,14))
-}
-
 func lcm(a, b int) int {
   return a*b/gcd(a,b)
 }
