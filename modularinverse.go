@@ -1,17 +1,8 @@
 package main
 
-func modInverse(a, n int) (bool, int) {
-	for b := 1; b < n; b++ {
-		if a*b%n == 1 {
-			return true, b
-		}
-	}
-	return false, 0
-}
-
 func move(x, n int) int {
 	if x < 0 {
-		x = n - (-x)%n
+		return n - (-x)%n
 	}
 	return x % n
 }
