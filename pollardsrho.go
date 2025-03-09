@@ -17,7 +17,6 @@ func rhoPolynomial(x, n int) int {
   return (x*x + 1)%n
 }
 
-
 func rho(n int) int {
   x := 2
   y := 2
