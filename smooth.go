@@ -1,13 +1,6 @@
 package main
 
-import "fmt"
-
-func main() {
-	fmt.Println(smooth(34))
-}
-
-func isSmooth(n int) bool {
-	primes := [6]int{2, 3, 5, 7, 11, 13}
+func isSmooth(n int, primes []int) bool {
 	for _, s := range primes {
 		for n%s == 0 {
 			n = n / s
@@ -19,25 +12,13 @@ func isSmooth(n int) bool {
 	return false
 }
 
-func smooth(n int) (int, [6]int) {
-	primes := [6]int{2, 3, 5, 7, 11, 13}
-	var a [6]int
+func smooth(n int, primes []int) (int, []int) {
+	var a []int
 	for b, s := range primes {
+		a = append(a, 0)
 		for n%s == 0 {
 			n = n / s
 			a[b] = a[b] + 1
-		}
-	}
-	return n, a
-}
-
-func boolSmooth(n int) (int, [6]int) {
-	primes := [6]int{2, 3, 5, 7, 11, 13}
-	var a [6]int
-	for b, s := range primes {
-		for n%s == 0 {
-			n = n / s
-			a[b] = (a[b]+1)%2
 		}
 	}
 	return n, a
