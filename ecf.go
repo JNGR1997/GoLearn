@@ -1,10 +1,8 @@
 package main
 
-import "fmt"
+// We are using the curve y^2 = x^3 + 5x -5. (1,1) is a non-trivial point on this curve.
 
-func main() {
-	fmt.Println(finite{x: 1, y: 1}.tower(30300, 455839))
-}
+import "fmt"
 
 type point interface {
 	add(point, int) point
