@@ -1,7 +1,5 @@
 package main
 
-// We are using the curve y^2 = x^3 + 5x -5. (1,1) is a non-trivial point on this curve.
-
 import "fmt"
 
 type point interface {
@@ -60,6 +58,9 @@ func (fin1 finite) add(p point, n int) point {
 }
 
 func (fin finite) double(n int) point {
+	if fin.y == 0 {
+		return identity{}
+	}
 	num := (3*fin.x*fin.x + 5) % n
 	denom := (2 * fin.y) % n
 	a, b := euclideanInverse(denom, n)
