@@ -97,9 +97,6 @@ func move(x, n int) int {
 func euclideanInverse(a, n int) (int, bool) {
 	m := n
 	b := a
-	if b == 0 {
-		return 0, false
-	}
 	q := (m - m%b) / b
 	r := m % b
 	t1 := 0
