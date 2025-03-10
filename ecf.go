@@ -2,17 +2,14 @@ package main
 
 import "fmt"
 
-const n = 455839
-
 func main() {
-	start := finite{x: 1, y: 1}
-	fmt.Println(start.tower(30300))
+	fmt.Println(finite{x: 1, y: 1}.tower(30300, 455839))
 }
 
 type point interface {
-	add(point) point
-	double() point
-	tower(int) point
+	add(point, int) point
+	double(int) point
+	tower(int, int) point
 }
 
 type identity struct{}
@@ -22,19 +19,19 @@ type finite struct {
 	y int
 }
 
-func (id identity) add(p point) point {
+func (id identity) add(p point, n int) point {
 	return p
 }
 
-func (id identity) double() point {
+func (id identity) double(n int) point {
 	return id
 }
 
-func (id identity) tower(m int) point {
+func (id identity) tower(m, n int) point {
 	return id
 }
 
-func (fin1 finite) add(p point) point {
+func (fin1 finite) add(p point, n int) point {
 	fin2, ok := p.(finite)
 	if !ok {
 		// P is the identity element.
@@ -44,59 +41,60 @@ func (fin1 finite) add(p point) point {
 	if fin1.x == fin2.x {
 		if fin1.y == fin2.y {
 			// Fin1 and fin2 are the same point.
-			return fin1.double()
+			return fin1.double(n)
 		}
 		// Fin1 is the inverse of fin2.
 		return identity{}
 	}
 
 	// Fin1 and fin2 are distinct finite points.
-	e, f := euclideanInverse(move(fin2.x - fin1.x))
+	num := move(fin2.y-fin1.y, n)
+	denom := move(fin2.x-fin1.x, n)
+	e, f := euclideanInverse(denom, n)
 	if f {
-		s := e * move(fin2.y-fin1.y) % n
-		newx := move(s*s - fin1.x - fin2.x)
-		newy := move(fin1.y - s*(fin1.x-newx))
-		return finite{x: newx, y: newy}
-	}
-	fmt.Println(move(fin2.x-fin1.x), " does not have an inverse mod ", n, ".")
-	return identity{}
-}
-
-func (fin finite) double() point {
-	num := (3*fin.x*fin.x + 5) % n
-	denom := (2 * fin.y) % n
-	a, b := euclideanInverse(denom)
-	if b {
-		s := (num * a) % n
-		newx := move(s*s - 2*fin.x)
-		newy := move(fin.y - s*(fin.x-newx))
+		s := e * num % n
+		newx := move(s*s-fin1.x-fin2.x, n)
+		newy := move(fin1.y-s*(fin1.x-newx), n)
 		return finite{x: newx, y: newy}
 	}
 	fmt.Println(denom, " does not have an inverse mod ", n, ".")
 	return identity{}
 }
 
-func (fin finite) tower(m int) point {
+func (fin finite) double(n int) point {
+	num := (3*fin.x*fin.x + 5) % n
+	denom := (2 * fin.y) % n
+	a, b := euclideanInverse(denom, n)
+	if b {
+		s := (num * a) % n
+		newx := move(s*s-2*fin.x, n)
+		newy := move(fin.y-s*(fin.x-newx), n)
+		return finite{x: newx, y: newy}
+	}
+	fmt.Println(denom, " does not have an inverse mod ", n, ".")
+	return identity{}
+}
+
+func (fin finite) tower(m, n int) point {
 	var pt point = fin
 	for m%2 == 0 {
-		pt = pt.double()
+		pt = pt.double(n)
 		m = m / 2
 	}
 	if m > 1 {
-		rem := pt.tower(m - 1)
-		pt = pt.add(rem)
+		pt = pt.add(pt.tower(m-1, n), n)
 	}
 	return pt
 }
 
-func move(x int) int {
+func move(x, n int) int {
 	if x < 0 {
 		return n - (-x)%n
 	}
 	return x % n
 }
 
-func euclideanInverse(a int) (int, bool) {
+func euclideanInverse(a, n int) (int, bool) {
 	m := n
 	b := a
 	if b == 0 {
@@ -104,7 +102,8 @@ func euclideanInverse(a int) (int, bool) {
 	}
 	q := (m - m%b) / b
 	r := m % b
-	t1, t2 := 0, 1
+	t1 := 0
+	t2 := 1
 	t3 := t1 - q*t2
 	for r != 0 {
 		m = b
@@ -118,5 +117,5 @@ func euclideanInverse(a int) (int, bool) {
 	if b != 1 {
 		return 0, false
 	}
-	return move(t2), true
+	return move(t2, n), true
 }
