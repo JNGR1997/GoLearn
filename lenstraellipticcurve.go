@@ -2,8 +2,10 @@ package main
 
 import "fmt"
 
+var start point
+
 func main() {
-	var start point = finite{x: 1, y: 1}
+	start = finite{x: 1, y: 1}
 	fmt.Println(start.tower(30300, 455839))
 }
 
