@@ -67,7 +67,7 @@ func euclideanInverse(a, m int) (int, bool) {
 	for r != 0 {
 		n = b
 		b = r
- 	r := n % b
+		r := n % b
 		q = (n - r) / b
 		t1 = t2
 		t2 = t3
