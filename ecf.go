@@ -1,11 +1,8 @@
 package main
 
-import "fmt"
-
 type point interface {
 	add(point, int) point
 	double(int) point
-	tower(int, int) point
 }
 
 type identity struct{}
@@ -20,10 +17,6 @@ func (id identity) add(p point, n int) point {
 }
 
 func (id identity) double(n int) point {
-	return id
-}
-
-func (id identity) tower(m, n int) point {
 	return id
 }
 
@@ -53,7 +46,6 @@ func (fin1 finite) add(p point, n int) point {
 		newy := move(fin1.y-s*(fin1.x-newx), n)
 		return finite{x: newx, y: newy}
 	}
-	fmt.Println(denom, " does not have an inverse mod ", n, ".")
 	return identity{}
 }
 
@@ -70,20 +62,7 @@ func (fin finite) double(n int) point {
 		newy := move(fin.y-s*(fin.x-newx), n)
 		return finite{x: newx, y: newy}
 	}
-	fmt.Println(denom, " does not have an inverse mod ", n, ".")
 	return identity{}
-}
-
-func (fin finite) tower(m, n int) point {
-	var pt point = fin
-	for m%2 == 0 {
-		pt = pt.double(n)
-		m = m / 2
-	}
-	if m > 1 {
-		pt = pt.add(pt.tower(m-1, n), n)
-	}
-	return pt
 }
 
 func move(x, n int) int {
@@ -94,24 +73,24 @@ func move(x, n int) int {
 }
 
 func euclideanInverse(a, n int) (int, bool) {
-        m := n
-        b := a
-        r := m % b
-        q := (m - r) / b
-        t1 := 0
-        t2 := 1
-        t3 := -q
-        for r != 0 {
-                m = b
-                b = r
-                r = m % b
-                q = (m - r) / b
-                t1 = t2
-                t2 = t3
-                t3 = t1 - q*t2
-        }
-        if b != 1 {
-                return 0, false
-        }
-        return move(t2, n), true
+	m := n
+	b := a
+	r := m % b
+	q := (m - r) / b
+	t1 := 0
+	t2 := 1
+	t3 := -q
+	for r != 0 {
+		m = b
+		b = r
+		r = m % b
+		q = (m - r) / b
+		t1 = t2
+		t2 = t3
+		t3 = t1 - q*t2
+	}
+	if b != 1 {
+		return 0, false
+	}
+	return move(t2, n), true
 }
