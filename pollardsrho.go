@@ -1,16 +1,5 @@
 package main
 
-func gcd(a, b int) int {
-  for b!= 0 {
-    a, b = b, a%b
-  }
-  return a
-}
-
-func rhoPolynomial(x, n int) int {
-  return (x*x + 1)%n
-}
-
 func rho(n int) int {
   x := 2
   y := 2
@@ -25,4 +14,15 @@ func rho(n int) int {
     }
   }
   return d
+}
+
+func rhoPolynomial(x, n int) int {
+  return (x*x + 1)%n
+}
+
+func gcd(a, b int) int {
+  for b!= 0 {
+    a, b = b, a%b
+  }
+  return a
 }
