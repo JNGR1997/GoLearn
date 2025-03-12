@@ -59,16 +59,16 @@ func move(x, n int) int {
 func euclideanInverse(a, m int) (int, bool) {
 	n := m
 	b := a
-	q := (n - n%b) / b
 	r := n % b
+	q := (n - r) / b
 	t1 := 0
 	t2 := 1
-	t3 := t1 - q*t2
+	t3 := -q
 	for r != 0 {
 		n = b
 		b = r
-		q = (n - n%b) / b
-		r = n % b
+ 	r := n % b
+		q = (n - r) / b
 		t1 = t2
 		t2 = t3
 		t3 = t1 - q*t2
