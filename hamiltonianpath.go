@@ -1,21 +1,15 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 type Vertex struct {
 	Num        int
 	Neighbours []*Vertex
 }
 
-func (v *Vertex) add(n *Vertex) {
-	v.Neighbours = append(v.Neighbours, n)
-}
-
 func (v *Vertex) member(set []*Vertex) bool {
 	for _, i := range set {
-		if v.Num == i.Num {
+		if v == i {
 			return true
 		}
 	}
@@ -26,7 +20,7 @@ func (v *Vertex) remove(set []*Vertex) []*Vertex {
 	s := make([]*Vertex, len(set))
 	copy(s, set)
 	for a, b := range s {
-		if v.Num == b.Num {
+		if v == b {
 			s = append(s[:a], s[a+1:]...)
 			return s
 		}
@@ -44,12 +38,10 @@ func path(visited, destinations []*Vertex, current *Vertex) bool {
 		}
 		return true
 	}
-	exists := false
+	var exists bool
 	for _, i := range current.Neighbours {
 		if i.member(newdestination) {
-			if path(newvisited, newdestination, i) {
-				exists = true
-			}
+			exists = exists || path(newvisited, newdestination, i)
 		}
 	}
 	return exists
