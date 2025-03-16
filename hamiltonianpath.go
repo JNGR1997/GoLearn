@@ -34,7 +34,7 @@ func (v *Vertex) remove(set []*Vertex) []*Vertex {
 	return s
 }
 
-func path(visited []*Vertex, destinations []*Vertex, current *Vertex) bool {
+func path(visited, destinations []*Vertex, current *Vertex) bool {
 	newvisited := append(visited, current)
 	newdestination := current.remove(destinations)
 	if len(newdestination) == 0 {
@@ -53,21 +53,4 @@ func path(visited []*Vertex, destinations []*Vertex, current *Vertex) bool {
 		}
 	}
 	return exists
-}
-
-func main() {
-	v1 := &Vertex{Num: 1}
-	v2 := &Vertex{Num: 2}
-	v3 := &Vertex{Num: 3}
-	v4 := &Vertex{Num: 4}
-
-	v1.add(v2)
-	v2.add(v3)
-	v3.add(v4)
-	v2.add(v4)
-	v4.add(v3)
-
-	if !path([]*Vertex{}, []*Vertex{v1, v2, v3, v4}, v1) {
-		fmt.Println("No such path found.")
-	}
 }
