@@ -2,13 +2,6 @@ package main
 
 import "fmt"
 
-var start point
-
-func main() {
-	start = finite{x: 1, y: 1}
-	fmt.Println(start.tower(30300, 455839))
-}
-
 type point interface {
 	add(point, int) point
 	double(int) point
@@ -68,6 +61,7 @@ func (fin finite) double(n int) point {
 	if fin.y == 0 {
 		return identity{}
 	}
+
 	num := (3*fin.x*fin.x + 5) % n
 	denom := (2 * fin.y) % n
 	a, b := euclideanInverse(denom, n)
