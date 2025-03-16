@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"os"
 )
 
 type Vertex struct {
@@ -32,37 +31,43 @@ func (v *Vertex) remove(set []*Vertex) []*Vertex {
 			return s
 		}
 	}
-	return nil
+	return s
 }
 
-func path(visited []*Vertex, destinations []*Vertex, current *Vertex) {
-	fmt.Println("Currently at ", current.Num)
-	fmt.Println("Removing ", current.Num, " from ", destinations)
+func path(visited []*Vertex, destinations []*Vertex, current *Vertex) bool {
 	newvisited := append(visited, current)
 	newdestination := current.remove(destinations)
 	if len(newdestination) == 0 {
-		fmt.Println("Success!")
 		fmt.Println("A solution is: ")
 		for _, ver := range newvisited {
 			fmt.Println(ver.Num)
 		}
-		os.Exit(1)
+		return true
 	}
+	exists := false
 	for _, i := range current.Neighbours {
 		if i.member(newdestination) {
-			path(newvisited, newdestination, i)
+			if path(newvisited, newdestination, i) {
+				exists = true
+			}
 		}
 	}
+	return exists
 }
 
 func main() {
 	v1 := &Vertex{Num: 1}
 	v2 := &Vertex{Num: 2}
 	v3 := &Vertex{Num: 3}
+	v4 := &Vertex{Num: 4}
 
 	v1.add(v2)
-	v1.add(v3)
-	v3.add(v2)
+	v2.add(v3)
+	v3.add(v4)
+	v2.add(v4)
+	v4.add(v3)
 
-	path([]*Vertex{}, []*Vertex{v1, v2, v3}, v1)
+	if !path([]*Vertex{}, []*Vertex{v1, v2, v3, v4}, v1) {
+		fmt.Println("No such path found.")
+	}
 }
