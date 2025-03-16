@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(point{x: 1, y: 1}.tower(10))
+	fmt.Println(point{x: 96, y: 81}.tower(30))
 }
 
 const n = 30758
@@ -28,32 +28,31 @@ func (p point) tower(m int) point {
 func (f1 point) add(f2 point) point {
 	denomx := (1 + 10*f1.x*f1.y*f2.x*f2.y) % n
 	a, b := euclideanInverse(denomx)
-	if !a {
-		return point{x: 0, y: 1}
+	if a {
+		denomy := move(1 - 10*f1.x*f1.y*f2.x*f2.y)
+		c, d := euclideanInverse(denomy)
+		if c {
+			numx := (f1.x*f2.y + f1.y*f2.x) % n
+			numy := move(f1.y*f2.y - 6*f1.x*f2.x)
+			return point{x: numx * b % n, y: numy * d % n}
+		}
 	}
-
-	denomy := move(1 - 10*f1.x*f1.y*f2.x*f2.y)
-	c, d := euclideanInverse(denomy)
-	if !c {
-		return point{x: 0, y: 1}
-	}
-	numx := (f1.x*f2.y + f1.y*f2.x) % n
-	numy := move(f1.y*f2.y - 6*f1.x*f2.x)
-	return point{x: numx * b % n, y: numy * d % n}
+	return point{x: 0, y: 1}
 }
 
 func (f point) double() point {
-	a, b := euclideanInverse((6*f.x*f.x + f.y*f.y) % n)
-	if !a {
-		return point{x: 0, y: 1}
+	denomx := (6*f.x*f.x + f.y*f.y) % n
+	a, b := euclideanInverse(denomx)
+	if a {
+		denomy := move(2 - 6*f.x*f.x - f.y*f.y)
+		c, d := euclideanInverse(denomy)
+		if c {
+			numx := (2 * f.x * f.y) % n
+			numy := move(f.y*f.y - 6*f.x*f.x)
+			return point{x: move(numx * b), y: move(numy * d)}
+		}
 	}
-	c, d := euclideanInverse(move(2 - 6*f.x*f.x - f.y*f.y))
-	if !c {
-		return point{x: 0, y: 1}
-	}
-	numx := (2 * f.x * f.y) % n
-	numy := move(f.y*f.y - 6*f.x*f.x)
-	return point{x: move(numx * b), y: move(numy * d)}
+	return point{x: 0, y: 1}
 }
 
 func move(x int) int {
