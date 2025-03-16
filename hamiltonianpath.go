@@ -21,8 +21,7 @@ func (v *Vertex) remove(set []*Vertex) []*Vertex {
 	copy(s, set)
 	for a, b := range s {
 		if v == b {
-			s = append(s[:a], s[a+1:]...)
-			return s
+			return append(s[:a], s[a+1:]...)
 		}
 	}
 	return s
