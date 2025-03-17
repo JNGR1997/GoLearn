@@ -1,5 +1,34 @@
 package main
 
+func turn(s [9][9][9]bool) [9][9][9]bool {
+	new := [9][9][9]bool{}
+	for k := 0; k < 9; k++ {
+		for i := 0; i < 9; i++ {
+			new[i][k] = s[k][i]
+		}
+	}
+	return new
+}
+
+func unturn(s [9][9][9]bool) [9][9][9]bool {
+	return turn(turn(turn(s)))
+}
+
+func twist(s [9][9][9]bool) [9][9][9]bool {
+	new := [9][9][9]bool{}
+	for x := 0; x < 9; x++ {
+		for y := 0; y < 9; y++ {
+			new[x][y] = s[(x-x%3)+(y-(y%3))/3][3*(x%3)+(y%3)]
+		}
+	}
+	return new
+}
+func untwist(s [9][9][9]bool) [9][9][9]bool {
+	new := [9][9][9]bool{}
+	return new
+}
+
+
 func checkCells(a [9][9]bool) [9][9]bool {
 	c := 0
 	for d := 0; d < 9; d++ {
