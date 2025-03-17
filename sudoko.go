@@ -155,6 +155,34 @@ func fiveOptions(a [9][9]bool) [9][9]bool {
 	return a
 }
 
+func sixOptions(a [9][9]bool) [9][9]bool {
+	for b := 0; b < 4; b++ {
+		for c := b + 1; c < 5; c++ {
+			for d := c + 1; d < 6; d++ {
+				for e := d + 1; e < 7; e++ {
+					for f := e + 1; f < 8; f++ {
+						for g := f + 1; g < 9; g++ {
+							suds := sudUnion(a[b], sudUnion(a[c], sudUnion(a[d], sudUnion(a[e], sudUnion(a[f], a[g])))))
+							if numOptions(suds) == 6 {
+								for k, v := range suds {
+									if v {
+										for h := 0; h < 9; h++ {
+											if h != b && h != c && h != d && h != e && h != f && h != g {
+												a[h] = removeOption(k, a[h])
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	return a
+}
+
 func sudUnion(a, b [9]bool) [9]bool {
 	c := [9]bool{}
 	for d := 0; d < 9; d++ {
