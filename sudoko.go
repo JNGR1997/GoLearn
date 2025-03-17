@@ -4,9 +4,9 @@ func main() {
 }
 
 func checkCells(a [9][9]bool) [9][9]bool {
- b := [9]int{}
+	b := [9]int{}
 	c := 0
-	for d, _ := range b {
+	for d := range b {
 		for f, g := range a {
 			if g[d] == true {
 				b[d] = b[d] + 1
