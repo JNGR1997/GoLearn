@@ -1,5 +1,17 @@
 package main
 
+func solved(s [9][9][9]bool) bool {
+	for x := 0; x < 9; x++ {
+		for y := 0; y < 9; y++ {
+			if numOptions(s[x][y]) > 1 {
+				return false
+			}
+		}
+	}
+	return true
+}
+
+
 func turn(s [9][9][9]bool) [9][9][9]bool {
 	new := [9][9][9]bool{}
 	for k := 0; k < 9; k++ {
