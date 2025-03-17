@@ -23,11 +23,10 @@ func twist(s [9][9][9]bool) [9][9][9]bool {
 	}
 	return new
 }
-func untwist(s [9][9][9]bool) [9][9][9]bool {
-	new := [9][9][9]bool{}
-	return new
-}
 
+func untwist(s [9][9][9]bool) [9][9][9]bool {
+	return twist(s)
+}
 
 func checkCells(a [9][9]bool) [9][9]bool {
 	c := 0
