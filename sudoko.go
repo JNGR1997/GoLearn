@@ -1,5 +1,33 @@
 package main
 
+var sudoko [9][9][9]bool
+
+func main() {
+	for !solved(sudoko) {
+		sudoko = solve(sudoko)
+		sudoko = turn(sudoko)
+		sudoko = solve(sudoko)
+		sudoko = twist(sudoko)
+		sudoko = solve(sudoko)
+		sudoko = twist(sudoko)
+		sudoko = unturn(sudoko)
+	}
+}
+func solve(s [9][9][9]bool) [9][9][9]bool {
+	sol := [9][9][9]bool{}
+	for x := 0; x < 9; x++ {
+		sol[x] = oneOption(s[x])
+		sol[x] = twoOptions(sol[x])
+		sol[x] = threeOptions(sol[x])
+		sol[x] = fourOptions(sol[x])
+		sol[x] = fiveOptions(sol[x])
+		sol[x] = sixOptions(sol[x])
+		sol[x] = checkCells(sol[x])
+	}
+	return sol
+}
+
+
 func solved(s [9][9][9]bool) bool {
 	for x := 0; x < 9; x++ {
 		for y := 0; y < 9; y++ {
