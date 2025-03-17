@@ -130,10 +130,10 @@ func fourOptions(a [9][9]bool) [9][9]bool {
 }
 
 func fiveOptions(a [9][9]bool) [9][9]bool {
-	for b := 0; b < 6; b++ {
-		for c := b + 1; c < 7; c++ {
-			for d := c + 1; d < 8; d++ {
-				for e := d + 1; e < 9; e++ {
+	for b := 0; b < 5; b++ {
+		for c := b + 1; c < 6; c++ {
+			for d := c + 1; d < 7; d++ {
+				for e := d + 1; e < 8; e++ {
 					for f := e + 1; f < 9; f++ {
 						suds := sudUnion(a[b], sudUnion(a[c], sudUnion(a[d], sudUnion(a[e], a[f]))))
 						if numOptions(suds) == 5 {
@@ -154,7 +154,6 @@ func fiveOptions(a [9][9]bool) [9][9]bool {
 	}
 	return a
 }
-
 
 func sudUnion(a, b [9]bool) [9]bool {
 	c := [9]bool{}
