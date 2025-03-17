@@ -1,32 +1,5 @@
 package main
 
-import "fmt"
-
-var cell [9][9]bool
-
-func main() {
-	cell = [9][9]bool{[9]bool{false, true, true, true, true, true, true, true, true},
-		[9]bool{false, false, false, false, false, false, false, false, false},
-		[9]bool{false, false, false, false, false, false, false, false, false},
-		[9]bool{false, false, false, false, false, false, false, false, false},
-		[9]bool{false, false, false, false, false, false, false, false, false},
-		[9]bool{false, false, false, false, false, false, false, false, false},
-		[9]bool{false, false, false, false, false, false, false, false, false},
-		[9]bool{false, false, false, false, false, false, false, false, false},
-		[9]bool{false, false, false, false, false, false, false, false, false}}
-	cell = tr(cell)
-	fmt.Println(oneOption(cell))
-}
-
-func tr(a [9][9]bool) [9][9]bool {
-	for j, b := range a {
-		for c := range b {
-			a[j][c] = !a[j][c]
-		}
-	}
-	return a
-}
-
 func checkCells(a [9][9]bool) [9][9]bool {
 	c := 0
 	for d := 0; d < 9; d++ {
