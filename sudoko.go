@@ -4,16 +4,16 @@ func main() {
 }
 
 func checkCells(a [9][9]bool) [9][9]bool {
-	b := [9]int{}
 	c := 0
-	for d := range b {
+	for d := 0; d < 9; d++ {
+		b := 0
 		for f, g := range a {
 			if g[d] == true {
-				b[d] = b[d] + 1
+				b++
 				c = f
 			}
 		}
-		if b[d] == 1 {
+		if b == 1 {
 			a[c] = removeOtherOptions(d)
 		}
 	}
