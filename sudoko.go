@@ -4,13 +4,17 @@ func main() {
 }
 
 func checkCells(a [9][9]bool) [9][9]bool {
-	for k, l := range a {
-		if numOptions(l) == 1 {
-			for m := 0; m < 9; m++ {
-				if m != k {
-					a[m] = removeOption(k, a[m])
-				}
+ b := [9]int{}
+	c := 0
+	for d, _ := range b {
+		for f, g := range a {
+			if g[d] == true {
+				b[d] = b[d] + 1
+				c = f
 			}
+		}
+		if b[d] == 1 {
+			a[c] = removeOtherOptions(d)
 		}
 	}
 	return a
@@ -47,17 +51,13 @@ func removeOtherOptions(a int) [9]bool {
 }
 
 func oneOption(a [9][9]bool) [9][9]bool {
-	b := [9]int{}
-	c := 0
-	for d, _ := range b {
-		for f, g := range a {
-			if g[d] == true {
-				b[d] = b[d] + 1
-				c = f
+for k, l := range a {
+		if numOptions(l) == 1 {
+			for m := 0; m < 9; m++ {
+				if m != k {
+					a[m] = removeOption(k, a[m])
+				}
 			}
-		}
-		if b[d] == 1 {
-			a[c] = removeOtherOptions(d)
 		}
 	}
 	return a
