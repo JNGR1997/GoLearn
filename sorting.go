@@ -4,21 +4,20 @@ import (
 	"math/rand/v2"
 )
 
-func sort(list []int) []int {
-	if len(list) > 1 {
-		var left []int
-		var right []int
-		k := rand.IntN(len(list) - 1)
-		pivot := list[k]
-		list = append(list[:k], list[k+1:]...)
-		for _, v := range list {
-			if v < pivot {
-				left = append(left, v)
+func sort(list []int, a, b int) {
+	if b-a > 0 {
+		k := a + rand.IntN(b-a)
+		list[k], list[b] = list[b], list[k]
+		z, k := a, b
+		for z < k {
+			if list[z] > list[k] {
+				list[z], list[k-1], list[k] = list[k-1], list[k], list[z]
+				k--
 			} else {
-				right = append(right, v)
+				z++
 			}
 		}
-		return append(append(sort(left), pivot), sort(right)...)
+		sort(list, a, k-1)
+		sort(list, k+1, b)
 	}
-	return list
 }
