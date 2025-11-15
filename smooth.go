@@ -6,10 +6,7 @@ func isSmooth(n int, primes []int) bool {
 			n = n / s
 		}
 	}
-	if n == 1 {
-		return true
-	}
-	return false
+	return n == 1
 }
 
 func smooth(n int, primes []int) (int, []int) {
